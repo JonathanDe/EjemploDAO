@@ -11,8 +11,8 @@ public class PersonaControlador {
 	public boolean almacenarPersona(PersonaDTO persona) { // pudo haber sido
 															// invocado por un
 															// evento de un
-															// botón
-		// Validar que los campos estén correctos
+															// botï¿½n
+		// Validar que los campos estï¿½n correctos
 		boolean respuesta = personaNegocio.almacenarPersona(persona);
 
 		return respuesta;
@@ -21,6 +21,10 @@ public class PersonaControlador {
 	
 	public List<PersonaDTO> consultarPersonas(){
 		return personaNegocio.consultarPersonas();
+	}
+        
+        public PersonaDTO consultarPersona(String identificacion){
+            return personaNegocio.consultarPersona(identificacion);
 	}
 
 }

@@ -17,8 +17,7 @@ import java.util.ArrayList;
 public class PersonaDAOFile implements PersonaDAO {
 
 	private static final String DELIMITADOR_ARCHIVO = ",";	
-        private static final String PERSONAS_FILE_NAME = "C:\\basura\\personas";
-        //private static final String PERSONAS_FILE_NAME = "..\..\..\..\..\..\personas";
+        private static final String PERSONAS_FILE_NAME = "personas";
 	private BufferedWriter escritorBuffer;
 	private FileWriter escritorArchivo;
 	private Scanner lector;
@@ -65,8 +64,30 @@ public class PersonaDAOFile implements PersonaDAO {
 
 	@Override
 	public PersonaDTO consultarPersona(String identificacion) {
-	
-		return null;
+            //final List<PersonaDTO> listaPersonas = new ArrayList<>();
+            PersonaDTO persona;
+            try {
+	        lectorArchivo = new FileReader(archivoPersonas);
+		lectorBuffer = new BufferedReader(lectorArchivo);
+                String linea;
+                while ((linea = lectorBuffer.readLine()) != null) {
+                    System.out.println(linea);
+                    String[] datosPersona = linea.split(",");
+                    //persona = new PersonaDTO(datosPersona[1], datosPersona[2], datosPersona[3].charAt(0), datosPersona[0]);
+                    //listaPersonas.add(new PersonaDTO(datosPersona[1], datosPersona[2], datosPersona[3].charAt(0), datosPersona[0]));
+                }
+            } catch (IOException e) {
+                 e.printStackTrace();
+            } finally {
+                try {
+                    if (null != lectorArchivo) {
+                        lectorArchivo.close();
+                    }
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }        
+            return null;
 	}
 
 	@Override

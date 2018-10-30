@@ -10,13 +10,17 @@ public class PersonaNegocio {
 	PersonaDAO personaDAO= new PersonaDAOFile();
 	
 	public boolean almacenarPersona(PersonaDTO persona){
-		//Validaciones de negocio y se ejecutarían los casos de uso de la aplicación
+		//Validaciones de negocio y se ejecutarï¿½an los casos de uso de la aplicaciï¿½n
 		boolean resultado = personaDAO.almacenarPersona(persona); 
 		return resultado;
 	}
 	
 	public List<PersonaDTO> consultarPersonas(){
 		return personaDAO.consultarPersonas();
+	}
+        
+        public PersonaDTO consultarPersona(String identificacion){
+		return personaDAO.consultarPersona(String identificacion);
 	}
 
 }
