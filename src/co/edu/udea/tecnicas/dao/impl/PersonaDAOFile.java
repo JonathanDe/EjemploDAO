@@ -12,7 +12,10 @@ import co.edu.udea.tecnicas.modelo.PersonaDTO;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PersonaDAOFile implements PersonaDAO {
 
@@ -68,11 +71,11 @@ public class PersonaDAOFile implements PersonaDAO {
             lectorArchivo = new FileReader(archivoPersonas);
             lectorBuffer = new BufferedReader(lectorArchivo);
             String linea;
-            boolean found = true;
-            while ((linea = lectorBuffer.readLine()) != null && found) {
+            boolean found = false;
+            while ((linea = lectorBuffer.readLine()) != null && !found) {
                 String[] datosPersona = linea.split(",");
                 if (datosPersona[0].equals(identificacion)) {
-                    found = false;
+                    found = true;
                     persona = new PersonaDTO(datosPersona[1], datosPersona[2], datosPersona[3].charAt(0), datosPersona[0]);
                 }
             }
@@ -91,7 +94,7 @@ public class PersonaDAOFile implements PersonaDAO {
     }
 
     @Override
-    public List<PersonaDTO> consultarPersonas() {             
+    public List<PersonaDTO> consultarPersonas() {
         final List<PersonaDTO> listaPersonas = new ArrayList<>();
         try {            
             lectorArchivo = new FileReader(archivoPersonas);                        
@@ -117,8 +120,57 @@ public class PersonaDAOFile implements PersonaDAO {
 
     @Override
     public boolean eliminarPersona(String identificacion) {
-
-            return false;
+        boolean remove = false;
+        
+            /*try {
+                lectorArchivo = new FileReader(archivoPersonas);
+                lectorBuffer = new BufferedReader(lectorArchivo);
+                String linea;
+                
+                while ((linea = lectorBuffer.readLine()) != null) {
+                    if(linea.split(",")[0].equals(identificacion)) {
+                       linea = lectorBuffer.readLine().
+                    }
+                }
+            } catch (IOException e) {
+                 e.printStackTrace();
+            } finally {
+                try {
+                    if (null != lectorArchivo) {
+                        lectorArchivo.close();
+                    }
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }*/
+        
+        
+            List<PersonaDTO> personas=this.consultarPersonas();
+            
+            int j = 0;
+            boolean found = false;
+            do {
+                if (personas.get(j).getDocumento().trim().equals(identificacion)) {
+                    found = true;
+                    personas.remove(j);
+                }
+                j++;
+            } while (found == false && personas.size() > j);    
+            
+        try {
+            PrintWriter pw = new PrintWriter(new FileWriter(archivoPersonas));
+            pw.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(PersonaDAOFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            for(PersonaDTO persona:personas){
+                this.almacenarPersona(persona);
+                remove = true;
+            }
+            
+        
+        return remove;
     }
 
     @Override

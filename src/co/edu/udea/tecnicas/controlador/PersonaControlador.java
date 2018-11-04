@@ -26,5 +26,9 @@ public class PersonaControlador {
     public PersonaDTO consultarPersona(String identificacion){
         return personaNegocio.consultarPersona(identificacion);
     }
+    
+    public boolean eliminarPersona(String identificacion){
+        return personaNegocio.eliminarPersona(identificacion);
+    }
 
 }

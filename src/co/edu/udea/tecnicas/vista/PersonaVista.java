@@ -14,7 +14,7 @@ public class PersonaVista {
 
             do {
                 opcion = JOptionPane.showInputDialog(
-                                "Bienvenido al programa:\nSeleccione una opci�n:\n1. Registrar Persona.\n2.Listar Personas.\n3.Consultar.\n4.Salir");
+                                "Bienvenido al programa:\nSeleccione una opci�n:\n1. Registrar Persona.\n2.Listar Personas.\n3.Consultar.\n4.Eliminar.\n5.Salir");
 
                 switch (opcion) {
                     case "1":
@@ -49,9 +49,19 @@ public class PersonaVista {
                         } else {
                             JOptionPane.showMessageDialog(null, "No se encontraron resultados");
                         }
+                        break;
+                    case "4":
+                        String id = JOptionPane.showInputDialog("Ingrese la identificacion de la persona: ");
+                        boolean personaEliminada = controlador.eliminarPersona(id);
+                        if (personaEliminada) {
+                            JOptionPane.showMessageDialog(null, "La persona se eliminó con exito");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Ocurrio un problema");
+                        }
+                        break;
                 }
 
-            } while (!"4".equals(opcion));
+            } while (!"5".equals(opcion));
 
 	}
 
