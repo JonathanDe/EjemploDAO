@@ -15,6 +15,8 @@ public class PersonaControlador {
     @FXML private TextField nombres;
     @FXML private TextField apellidos;
     @FXML private TextField genero;
+
+    @FXML private TableView<String> tablePersonas;
     
     PersonaNegocio personaNegocio = new PersonaNegocio();
 
@@ -50,6 +52,7 @@ public class PersonaControlador {
     @FXML protected void handleSubmitAlmacenarPersona(ActionEvent event) {
         if (!nombres.getText().equals("") && !apellidos.getText().equals("") && !genero.getText().equals("") && !documento.getText().equals("")) {
             PersonaDTO persona = new PersonaDTO(nombres.getText(), apellidos.getText(), genero.getText().charAt(0), documento.getText());
+
             if(this.almacenarPersona(persona)){
                 actionStatus.setText("Usuario registrado con éxito!");
                 nombres.setText("");
