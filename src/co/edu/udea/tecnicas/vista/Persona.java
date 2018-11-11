@@ -19,6 +19,7 @@ public class Persona extends Application {
     /**
      * @param args the command line arguments
      */
+
     public static void main(String[] args) {
         Application.launch(Persona.class, args);
     }
@@ -26,10 +27,9 @@ public class Persona extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Persona.fxml"));
-        
-        stage.setTitle("Persona");
-        stage.setScene(new Scene(root, 300, 275));
+
+        stage.setTitle("Directorio de Personas");
+        stage.setScene(new Scene(root, 600, 400));
         stage.show();
     }
-   
 }
