@@ -16,10 +16,12 @@ public class PersonaNegocio {
     }
 
     public List<PersonaDTO> consultarPersonas() {
+
         return personaDAO.consultarPersonas();
     }
 
     public PersonaDTO consultarPersona(String identificacion) {
+
         return personaDAO.consultarPersona(identificacion);
     }
 
