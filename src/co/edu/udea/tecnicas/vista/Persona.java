@@ -10,12 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 /**
- *
  * @author Brian Vanegas
  */
 public class Persona extends Application {
-    
+
     /**
      * @param args the command line arguments
      */
@@ -23,7 +23,7 @@ public class Persona extends Application {
     public static void main(String[] args) {
         Application.launch(Persona.class, args);
     }
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Persona.fxml"));
